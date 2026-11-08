@@ -1,0 +1,886 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bưu Điện Tháng Mười Một - THCS Chu Văn An</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        vintagePaper: '#F4EAE1',
+                        vintageBorder: '#D8C3B3',
+                        warmBrown: '#5C4033',
+                        warmRed: '#A94442',
+                        autumnOrange: '#D97706',
+                        leafGreen: '#4A6B5D',
+                        softGold: '#E6C280'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Merriweather', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        handwriting: ['Dancing Script', 'Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- html2canvas for postcard export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            background-image: radial-gradient(#E8DFD5 1px, transparent 1px);
+            background-size: 24px 24px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #5C4033;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Envelope 3D Animation */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: #E8D3C3;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(92, 64, 51, 0.15);
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        @media (min-width: 640px) {
+            .envelope {
+                width: 400px;
+                height: 250px;
+            }
+        }
+
+        .envelope:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 22px 40px rgba(92, 64, 51, 0.25);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 120px solid #D9BFAC;
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out;
+            z-index: 3;
+        }
+
+        @media (min-width: 640px) {
+            .envelope-flap {
+                border-left-width: 200px;
+                border-right-width: 200px;
+                border-top-width: 145px;
+            }
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-letter {
+            position: absolute;
+            bottom: 12px;
+            left: 5%;
+            width: 90%;
+            height: 85%;
+            background: #FFFDF9;
+            border-radius: 6px;
+            padding: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.6s ease-in-out 0.2s;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed #D8C3B3;
+        }
+
+        .envelope.open .envelope-letter {
+            transform: translateY(-80px);
+        }
+
+        @media (min-width: 640px) {
+            .envelope.open .envelope-letter {
+                transform: translateY(-110px);
+            }
+        }
+
+        /* Postage Stamp Effect */
+        .stamp-border {
+            background: white;
+            padding: 5px;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background-image: radial-gradient(transparent 0px, transparent 3px, #FFF 3.5px, #FFF 100%);
+            background-size: 10px 10px;
+            background-position: -5px -5px;
+        }
+
+        .paper-clip {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            width: 14px;
+            height: 34px;
+            border: 2px solid #8C7A6B;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F4EAE1; }
+        ::-webkit-scrollbar-thumb { background: #C4AD9D; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A94442; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-warmRed selection:text-white">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="w-full bg-cream/90 backdrop-blur-md border-b border-vintageBorder/60 sticky top-0 z-40 px-4 py-3 sm:px-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-warmRed text-white flex items-center justify-center font-serif-title font-bold text-xl shadow-md">
+                    CVA
+                </div>
+                <div>
+                    <h1 class="font-serif-title text-base sm:text-lg font-bold text-warmBrown leading-tight">
+                        THCS CHU VĂN AN
+                    </h1>
+                    <p class="text-xs text-warmRed font-medium tracking-wide">Trạm Tri Ân 20/11</p>
+                </div>
+            </div>
+
+            <nav class="flex items-center gap-2 sm:gap-4">
+                <button onclick="scrollToSection('write-section')" class="text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full bg-warmBrown text-white hover:bg-warmRed transition duration-200 flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+                    <span>Viết Thư</span>
+                </button>
+                <button onclick="scrollToSection('wall-section')" class="text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-warmBrown/30 text-warmBrown hover:bg-vintagePaper transition duration-200 flex items-center gap-1.5">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 text-warmRed"></i>
+                    <span class="hidden sm:inline">Bảng Tin</span> Yêu Thương
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6 sm:py-10 space-y-16">
+
+        <!-- HERO SECTION: ENVELOPE OPENING -->
+        <section class="text-center flex flex-col items-center justify-center min-h-[65vh] relative">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-vintagePaper border border-vintageBorder text-xs text-warmBrown font-medium mb-6">
+                <i data-lucide="sparkles" class="w-4 h-4 text-autumnOrange"></i>
+                <span>Tháng 11 - Mùa Tri Ân Thầy Cô Giáo</span>
+            </div>
+
+            <h1 class="font-serif-title text-3xl sm:text-5xl md:text-6xl text-warmBrown font-bold mb-3 tracking-tight leading-tight">
+                BƯU ĐIỆN THÁNG MƯỜI MỘT
+            </h1>
+            
+            <p class="font-handwriting text-2xl sm:text-3xl text-warmRed max-w-2xl mx-auto mb-8 leading-relaxed">
+                "Có những bức thư không gửi bằng tem,<br class="sm:hidden"> mà gửi bằng tất cả sự chân thành và biết ơn!"
+            </p>
+
+            <!-- Phong bì tương tác 3D -->
+            <div id="envelope-container" class="envelope-wrapper my-4">
+                <div id="main-envelope" class="envelope" onclick="toggleEnvelope()">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-letter">
+                        <i data-lucide="mail-heart" class="w-10 h-10 text-warmRed mb-2"></i>
+                        <p class="font-serif-title text-sm sm:text-base font-bold text-warmBrown">HỘP THƯ TRI ÂN 20/11</p>
+                        <p class="text-xs text-gray-500 mt-1">Chạm để mở phong bì thư...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 items-center">
+                <button onclick="openFormDirectly()" class="px-6 py-3 rounded-xl bg-warmRed text-white font-semibold text-sm sm:text-base hover:bg-opacity-90 shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center gap-2">
+                    <i data-lucide="mail-open" class="w-5 h-5"></i>
+                    <span>Mở Hòm Thư Tri Ân</span>
+                </button>
+                <button onclick="scrollToSection('wall-section')" class="text-xs sm:text-sm text-warmBrown underline font-medium hover:text-warmRed">
+                    Khám phá Lời Chúc Học Sinh Chu Văn An
+                </button>
+            </div>
+        </section>
+
+        <!-- 3 HÒM THƯ CẢM XÚC -->
+        <section class="space-y-6">
+            <div class="text-center">
+                <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-warmBrown">Hòm Thư Tâm Tư</h2>
+                <p class="text-xs sm:text-sm text-gray-600 mt-1">Chọn thông điệp bạn muốn gửi gắm tới Thầy Cô</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Lời cảm ơn -->
+                <div onclick="selectCategory('camoen')" class="group cursor-pointer bg-cream border border-vintageBorder rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-warmRed transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-warmRed/5 rounded-full group-hover:scale-125 transition"></div>
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-red-100 text-warmRed flex items-center justify-center text-2xl mb-4 shadow-inner">
+                            💌
+                        </div>
+                        <h3 class="font-serif-title text-xl font-bold text-warmBrown group-hover:text-warmRed transition">Lời Cảm Ơn</h3>
+                        <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                            Bày tỏ lòng biết ơn chân thành đến những bài giảng hay, sự ân cần và kiên nhẫn của Thầy Cô suốt năm học.
+                        </p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-1 text-xs font-bold text-warmRed">
+                        <span>Gửi Lời Cảm Ơn</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2: Lời xin lỗi -->
+                <div onclick="selectCategory('xinloi')" class="group cursor-pointer bg-cream border border-vintageBorder rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-leafGreen transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-leafGreen/5 rounded-full group-hover:scale-125 transition"></div>
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-leafGreen flex items-center justify-center text-2xl mb-4 shadow-inner">
+                            🕊️
+                        </div>
+                        <h3 class="font-serif-title text-xl font-bold text-warmBrown group-hover:text-leafGreen transition">Lời Xin Lỗi</h3>
+                        <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                            Cởi bỏ những lầm lỗi vụng dại, những lúc quên bài hay chưa ngoan làm Thầy Cô bận lòng.
+                        </p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-1 text-xs font-bold text-leafGreen">
+                        <span>Gửi Lời Xin Lỗi</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3: Lời hứa -->
+                <div onclick="selectCategory('hua')" class="group cursor-pointer bg-cream border border-vintageBorder rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-autumnOrange transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-autumnOrange/5 rounded-full group-hover:scale-125 transition"></div>
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-autumnOrange flex items-center justify-center text-2xl mb-4 shadow-inner">
+                            🤝
+                        </div>
+                        <h3 class="font-serif-title text-xl font-bold text-warmBrown group-hover:text-autumnOrange transition">Lời Hứa</h3>
+                        <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                            Quyết tâm học tập thật tốt, rèn luyện chăm ngoan để trở thành niềm tự hào của mái trường Chu Văn An.
+                        </p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-1 text-xs font-bold text-autumnOrange">
+                        <span>Gửi Lời Hứa</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORM VIẾT THƯ -->
+        <section id="write-section" class="scroll-mt-20">
+            <div class="bg-vintagePaper/70 border border-vintageBorder rounded-3xl p-4 sm:p-8 shadow-md relative">
+                
+                <div class="hidden sm:block absolute top-6 right-8">
+                    <div class="stamp-border text-center">
+                        <div class="border border-dashed border-warmBrown/40 p-2 bg-cream text-xs">
+                            <span class="block font-bold text-warmRed">THCS CVA</span>
+                            <span class="text-[10px] text-gray-500">20.11</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-warmRed">Gửi Gắm Tâm Tư</span>
+                    <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-warmBrown">Soạn Thư Tri Ân</h2>
+                </div>
+
+                <form id="letter-form" onsubmit="handleSendLetter(event)" class="space-y-6">
+                    
+                    <!-- Chọn Loại Thư -->
+                    <div>
+                        <label class="block text-xs font-bold text-warmBrown mb-2">Loại Thư Tri Ân:</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="setLetterType('camoen')" id="btn-type-camoen" class="type-btn py-2.5 px-2 rounded-xl border border-vintageBorder text-xs sm:text-sm font-semibold flex items-center justify-center gap-1 bg-warmRed text-white">
+                                <span>💌 Cảm Ơn</span>
+                            </button>
+                            <button type="button" onclick="setLetterType('xinloi')" id="btn-type-xinloi" class="type-btn py-2.5 px-2 rounded-xl border border-vintageBorder text-xs sm:text-sm font-semibold flex items-center justify-center gap-1 bg-cream text-warmBrown hover:bg-vintagePaper">
+                                <span>🕊️ Xin Lỗi</span>
+                            </button>
+                            <button type="button" onclick="setLetterType('hua')" id="btn-type-hua" class="type-btn py-2.5 px-2 rounded-xl border border-vintageBorder text-xs sm:text-sm font-semibold flex items-center justify-center gap-1 bg-cream text-warmBrown hover:bg-vintagePaper">
+                                <span>🤝 Lời Hứa</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chọn Thầy/Cô & Thông tin chung người gửi -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-warmBrown mb-1.5">
+                                Kính Gửi Thầy / Cô: <span class="text-warmRed">*</span>
+                            </label>
+                            <div class="relative">
+                                <select id="teacher-select" required class="w-full bg-cream border border-vintageBorder rounded-xl px-3 py-2.5 text-sm text-warmBrown focus:outline-none focus:border-warmRed appearance-none">
+                                    <option value="">-- Chọn Thầy/Cô hoặc Bộ Môn --</option>
+                                    <optgroup label="Thầy Cô Chủ Nhiệm & Bộ Môn">
+                                        <option value="Thầy/Cô Chủ Nhiệm Kính Yêu">Thầy/Cô Chủ Nhiệm Kính Yêu</option>
+                                        <option value="Thầy/Cô Bộ Môn Toán">Thầy/Cô Bộ Môn Toán</option>
+                                        <option value="Thầy/Cô Bộ Môn Ngữ Văn">Thầy/Cô Bộ Môn Ngữ Văn</option>
+                                        <option value="Thầy/Cô Bộ Môn Tiếng Anh">Thầy/Cô Bộ Môn Tiếng Anh</option>
+                                        <option value="Thầy/Cô Bộ Môn KHTN">Thầy/Cô Bộ Môn KHTN (Lý/Hóa/Sinh)</option>
+                                        <option value="Thầy/Cô Bộ Môn Lịch Sử & Địa Lý">Thầy/Cô Bộ Môn Lịch Sử & Địa Lý</option>
+                                        <option value="Thầy/Cô Bộ Môn Tin Học & Công Nghệ">Thầy/Cô Bộ Môn Tin Học & Công Nghệ</option>
+                                        <option value="Thầy/Cô Bộ Môn Nghệ Thuật & Thể Dục">Thầy/Cô Bộ Môn Thể Dục/Nghệ Thuật</option>
+                                        <option value="Tập Thể Thầy Cô Trường THCS Chu Văn An">Tập Thể Thầy Cô Trường Chu Văn An</option>
+                                    </optgroup>
+                                    <optgroup label="Khác">
+                                        <option value="custom">-- Nhập tên Thầy/Cô cụ thể bên dưới --</option>
+                                    </optgroup>
+                                </select>
+                                <i data-lucide="chevron-down" class="w-4 h-4 absolute right-3 top-3 text-gray-400 pointer-events-none"></i>
+                            </div>
+                            <input type="text" id="custom-teacher-input" placeholder="Nhập họ tên Thầy/Cô..." class="hidden mt-2 w-full bg-cream border border-vintageBorder rounded-xl px-3 py-2 text-sm text-warmBrown focus:outline-none focus:border-warmRed">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs font-bold text-warmBrown mb-1.5">Tên Người Gửi:</label>
+                                <input type="text" id="sender-name" placeholder="Học sinh Chu Văn An" class="w-full bg-cream border border-vintageBorder rounded-xl px-3 py-2.5 text-sm text-warmBrown focus:outline-none focus:border-warmRed">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-warmBrown mb-1.5">Đối Tượng:</label>
+                                <select id="sender-class" class="w-full bg-cream border border-vintageBorder rounded-xl px-3 py-2.5 text-sm text-warmBrown focus:outline-none focus:border-warmRed">
+                                    <option value="Học sinh trường" selected>Học sinh trường</option>
+                                    <option value="Tập thể Học sinh">Tập thể Học sinh</option>
+                                    <option value="Cựu Học sinh">Cựu Học sinh</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gửi ẩn danh -->
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="anonymous-check" onchange="toggleAnonymous()" class="rounded border-vintageBorder text-warmRed focus:ring-warmRed w-4 h-4">
+                        <label for="anonymous-check" class="text-xs text-warmBrown cursor-pointer font-medium">Gửi ẩn danh (Giữ bí mật tên người gửi)</label>
+                    </div>
+
+                    <!-- Gợi ý câu mở đầu nhanh -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label class="block text-xs font-bold text-warmBrown">Gợi ý câu mở đầu nhanh (Bấm để chèn):</label>
+                        </div>
+                        <div id="prompts-container" class="flex flex-wrap gap-2">
+                            <!-- Prompts render dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Nội dung thư -->
+                    <div>
+                        <label class="block text-xs font-bold text-warmBrown mb-1.5">
+                            Nội Dung Bức Thư Tri Ân: <span class="text-warmRed">*</span>
+                        </label>
+                        <textarea id="letter-content" rows="5" required placeholder="Viết những lời tri ân, kỷ niệm đáng nhớ hoặc câu chúc ấm áp gửi tới Thầy Cô tại đây..." class="w-full bg-cream border border-vintageBorder rounded-2xl p-4 text-sm text-warmBrown focus:outline-none focus:border-warmRed leading-relaxed shadow-inner"></textarea>
+                    </div>
+
+                    <!-- Chọn con tem kỷ niệm -->
+                    <div>
+                        <label class="block text-xs font-bold text-warmBrown mb-2">Chọn Con Tem Kỷ Niệm 20/11:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="cursor-pointer border-2 border-warmRed rounded-xl p-2 bg-cream text-center hover:bg-vintagePaper transition flex flex-col items-center gap-1 stamp-option">
+                                <input type="radio" name="stamp" value="tem-hoa" checked class="hidden">
+                                <span class="text-2xl">💐</span>
+                                <span class="text-[11px] font-bold text-warmBrown">Tem Phấn Trắng</span>
+                            </label>
+                            <label class="cursor-pointer border border-vintageBorder rounded-xl p-2 bg-cream text-center hover:bg-vintagePaper transition flex flex-col items-center gap-1 stamp-option">
+                                <input type="radio" name="stamp" value="tem-khai-niem" class="hidden">
+                                <span class="text-2xl">📚</span>
+                                <span class="text-[11px] font-bold text-warmBrown">Tem Tri Thức</span>
+                            </label>
+                            <label class="cursor-pointer border border-vintageBorder rounded-xl p-2 bg-cream text-center hover:bg-vintagePaper transition flex flex-col items-center gap-1 stamp-option">
+                                <input type="radio" name="stamp" value="tem-trai-tim" class="hidden">
+                                <span class="text-2xl">🍁</span>
+                                <span class="text-[11px] font-bold text-warmBrown">Tem Lá Thu</span>
+                            </label>
+                            <label class="cursor-pointer border border-vintageBorder rounded-xl p-2 bg-cream text-center hover:bg-vintagePaper transition flex flex-col items-center gap-1 stamp-option">
+                                <input type="radio" name="stamp" value="tem-may-bay" class="hidden">
+                                <span class="text-2xl">🕊️</span>
+                                <span class="text-[11px] font-bold text-warmBrown">Tem Bồ Câu</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Nút Gửi -->
+                    <div class="text-center pt-2">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-3.5 bg-warmRed text-white font-bold text-base rounded-2xl shadow-lg hover:bg-opacity-90 transition transform active:scale-95 flex items-center justify-center gap-2 mx-auto">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            <span>Gửi Thư Về Bưu Điện CVA</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+        <!-- BẢNG TIN YÊU THƯƠNG -->
+        <section id="wall-section" class="scroll-mt-20">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-warmRed">Góc Kỷ Niệm CHU VĂN AN</span>
+                    <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-warmBrown">Bảng Tin Yêu Thương</h2>
+                </div>
+
+                <!-- Lọc loại thư -->
+                <div class="flex items-center gap-1.5 bg-vintagePaper p-1 rounded-xl border border-vintageBorder text-xs font-medium self-start sm:self-auto">
+                    <button onclick="filterWall('all')" id="filter-all" class="px-3 py-1.5 rounded-lg bg-warmBrown text-white transition">Tất Cả</button>
+                    <button onclick="filterWall('camoen')" id="filter-camoen" class="px-3 py-1.5 rounded-lg text-warmBrown hover:bg-cream transition">💌 Cảm Ơn</button>
+                    <button onclick="filterWall('xinloi')" id="filter-xinloi" class="px-3 py-1.5 rounded-lg text-warmBrown hover:bg-cream transition">🕊️ Xin Lỗi</button>
+                    <button onclick="filterWall('hua')" id="filter-hua" class="px-3 py-1.5 rounded-lg text-warmBrown hover:bg-cream transition">🤝 Lời Hứa</button>
+                </div>
+            </div>
+
+            <div id="wall-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                <!-- Hiển thị thư ghim tại đây -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full bg-vintagePaper border-t border-vintageBorder py-6 mt-16 text-center text-xs text-warmBrown">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col items-center gap-2">
+            <div class="flex items-center gap-2 font-serif-title font-bold text-sm">
+                <span>Trường THCS Chu Văn An</span>
+                <span>•</span>
+                <span>Bưu Điện Tháng Mười Một 20/11</span>
+            </div>
+            <p class="text-gray-500">Trạm lưu giữ ký ức & tri ân thầy cô giáo kính yêu.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL POSTCARD -->
+    <div id="postcard-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-cream border-4 border-vintageBorder rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+            
+            <button onclick="closePostcardModal()" class="absolute top-4 right-4 text-gray-400 hover:text-warmBrown">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <span class="text-2xl">🎉</span>
+                <h3 class="font-serif-title text-xl font-bold text-warmBrown">Đã Gửi Thư Thành Công!</h3>
+                <p class="text-xs text-gray-600">Bưu thiếp kỷ niệm 20/11 của bạn tại Chu Văn An</p>
+            </div>
+
+            <!-- Khung Postcard có thể chụp tải về -->
+            <div id="postcard-card" class="bg-[#FFFDF9] border-2 border-dashed border-warmBrown/40 p-5 rounded-2xl relative shadow-md">
+                <div class="absolute top-4 right-4">
+                    <div class="stamp-border text-center">
+                        <div class="p-1 bg-cream border border-warmRed/30">
+                            <span id="postcard-stamp-emoji" class="text-xl">💐</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4 pr-12">
+                    <span id="postcard-tag" class="text-[10px] font-bold px-2 py-0.5 rounded bg-warmRed text-white">LỜI TRI ÂN</span>
+                    <h4 class="font-serif-title font-bold text-warmBrown text-base mt-2">THCS CHU VĂN AN</h4>
+                    <p class="text-[11px] text-gray-500">Mùa Tri Ân 20/11</p>
+                </div>
+
+                <div class="my-4 border-t border-b border-vintageBorder/50 py-3">
+                    <p class="text-xs font-bold text-warmBrown mb-1">Gửi: <span id="postcard-to" class="text-warmRed">...</span></p>
+                    <p id="postcard-body" class="font-handwriting text-lg text-warmBrown leading-relaxed italic my-2">
+                        "Nội dung bức thư..."
+                    </p>
+                    <p class="text-xs font-bold text-warmBrown text-right mt-2">
+                        Từ: <span id="postcard-from">...</span> (<span id="postcard-class">...</span>)
+                    </p>
+                </div>
+
+                <div class="flex justify-between items-center text-[10px] text-gray-400">
+                    <span>No. CVA-2011</span>
+                    <span>Bưu Điện Tháng 11</span>
+                </div>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-2">
+                <button onclick="downloadPostcard()" class="flex-1 py-2.5 rounded-xl bg-warmRed text-white text-xs font-bold flex items-center justify-center gap-1.5 hover:bg-opacity-90">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Tải Bưu Thiếp Về Máy</span>
+                </button>
+                <button onclick="closePostcardModal()" class="py-2.5 px-4 rounded-xl border border-vintageBorder text-xs font-bold text-warmBrown hover:bg-vintagePaper">
+                    Đóng
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ -->
+    <script>
+        // Dữ liệu thư mẫu ban đầu (Hoàn toàn ẩn danh, không có tên lớp hay học sinh cụ thể)
+        const initialLetters = [
+            {
+                id: 1,
+                type: 'camoen',
+                to: 'Thầy Cô Chủ Nhiệm Kính Yêu',
+                from: 'Học sinh giấu tên',
+                class: 'Học sinh trường',
+                content: 'Em xin gửi lời cảm ơn sâu sắc nhất tới Thầy Cô! Nhờ có sự ân cần và kiên nhẫn giảng dạy của Thầy Cô mà mỗi ngày đến trường Chu Văn An đều là một ngày hạnh phúc.',
+                stamp: '💐',
+                date: '20/11'
+            },
+            {
+                id: 2,
+                type: 'xinloi',
+                to: 'Thầy Cô Bộ Môn Ngữ Văn',
+                from: 'Học sinh ẩn danh',
+                class: 'Học sinh trường',
+                content: 'Em xin lỗi Thầy Cô vì những lúc chưa tập trung trong giờ học làm Thầy Cô bận lòng. Sự nhẫn nại của Thầy Cô luôn là bài học quý giá cho em.',
+                stamp: '🕊️',
+                date: '20/11'
+            },
+            {
+                id: 3,
+                type: 'hua',
+                to: 'Tập Thể Thầy Cô Trường Chu Văn An',
+                from: 'Tập thể Học sinh Chu Văn An',
+                class: 'Tập thể Học sinh',
+                content: 'Chúng em xin hứa sẽ luôn cố gắng học tập thật tốt, rèn luyện đạo đức chăm ngoan để giữ vững truyền thống hiếu học của mái trường THCS Chu Văn An.',
+                stamp: '📚',
+                date: '20/11'
+            }
+        ];
+
+        const promptSuggestions = {
+            camoen: [
+                "Cảm ơn Thầy/Cô vì đã luôn kiên nhẫn và truyền cảm hứng cho chúng em...",
+                "Nhờ sự tận tụy của Thầy/Cô mà mỗi tiết học luôn đong đầy niềm vui...",
+                "Nhân ngày 20/11, em kính chúc Thầy/Cô luôn dồi dào sức khỏe và hạnh phúc!"
+            ],
+            xinloi: [
+                "Em xin lỗi Thầy/Cô vì những lúc vụng dại chưa ngoan làm Thầy/Cô buồn lòng...",
+                "Có những lúc em chưa làm bài tập đầy đủ, em hứa sẽ sửa đổi...",
+                "Xin lỗi Thầy/Cô vì sự ngây thơ, bốc đồng của tuổi học trò..."
+            ],
+            hua: [
+                "Em hứa sẽ nỗ lực hết mình để đạt kết quả tốt nhất trong kỳ thi sắp tới...",
+                "Em quyết tâm luôn tập trung nghe giảng và vâng lời Thầy Cô...",
+                "Em sẽ luôn gìn giữ nét đẹp truyền thống của học sinh THCS Chu Văn An..."
+            ]
+        };
+
+        let currentType = 'camoen';
+        let currentFilter = 'all';
+        let lettersStore = [];
+
+        window.onload = function() {
+            lucide.createIcons();
+            loadLetters();
+            renderPrompts();
+            setupStampSelection();
+            
+            document.getElementById('teacher-select').addEventListener('change', function(e) {
+                const customInput = document.getElementById('custom-teacher-input');
+                if (e.target.value === 'custom') {
+                    customInput.classList.remove('hidden');
+                    customInput.required = true;
+                } else {
+                    customInput.classList.add('hidden');
+                    customInput.required = false;
+                }
+            });
+        };
+
+        function toggleEnvelope() {
+            document.getElementById('main-envelope').classList.toggle('open');
+        }
+
+        function openFormDirectly() {
+            const env = document.getElementById('main-envelope');
+            if (!env.classList.contains('open')) {
+                env.classList.add('open');
+            }
+            setTimeout(() => {
+                scrollToSection('write-section');
+            }, 300);
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectCategory(type) {
+            setLetterType(type);
+            scrollToSection('write-section');
+        }
+
+        function setLetterType(type) {
+            currentType = type;
+            ['camoen', 'xinloi', 'hua'].forEach(t => {
+                const btn = document.getElementById(`btn-type-${t}`);
+                if (t === type) {
+                    btn.className = "type-btn py-2.5 px-2 rounded-xl border border-vintageBorder text-xs sm:text-sm font-semibold flex items-center justify-center gap-1 bg-warmRed text-white shadow-sm";
+                } else {
+                    btn.className = "type-btn py-2.5 px-2 rounded-xl border border-vintageBorder text-xs sm:text-sm font-semibold flex items-center justify-center gap-1 bg-cream text-warmBrown hover:bg-vintagePaper";
+                }
+            });
+            renderPrompts();
+        }
+
+        function renderPrompts() {
+            const container = document.getElementById('prompts-container');
+            container.innerHTML = '';
+            (promptSuggestions[currentType] || []).forEach(text => {
+                const pill = document.createElement('button');
+                pill.type = 'button';
+                pill.className = 'text-[11px] bg-cream border border-vintageBorder hover:border-warmRed text-warmBrown px-3 py-1 rounded-full transition text-left cursor-pointer shadow-2xs';
+                pill.innerText = text;
+                pill.onclick = () => {
+                    const textarea = document.getElementById('letter-content');
+                    textarea.value = textarea.value.trim() ? textarea.value + ' ' + text : text;
+                };
+                container.appendChild(pill);
+            });
+        }
+
+        function toggleAnonymous() {
+            const isAnon = document.getElementById('anonymous-check').checked;
+            const senderInput = document.getElementById('sender-name');
+            senderInput.value = isAnon ? 'Học sinh ẩn danh' : '';
+            senderInput.disabled = isAnon;
+        }
+
+        function setupStampSelection() {
+            const options = document.querySelectorAll('.stamp-option');
+            options.forEach(opt => {
+                opt.addEventListener('click', function() {
+                    options.forEach(o => o.classList.remove('border-warmRed', 'border-2'));
+                    options.forEach(o => o.classList.add('border-vintageBorder'));
+                    this.classList.remove('border-vintageBorder');
+                    this.classList.add('border-warmRed', 'border-2');
+                    this.querySelector('input').checked = true;
+                });
+            });
+        }
+
+        function loadLetters() {
+            const saved = localStorage.getItem('cva_2011_letters');
+            if (saved) {
+                try {
+                    lettersStore = JSON.parse(saved);
+                } catch(e) {
+                    lettersStore = initialLetters;
+                }
+            } else {
+                lettersStore = initialLetters;
+                saveLetters();
+            }
+            renderWall();
+        }
+
+        function saveLetters() {
+            localStorage.setItem('cva_2011_letters', JSON.stringify(lettersStore));
+        }
+
+        function renderWall() {
+            const grid = document.getElementById('wall-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = currentFilter === 'all' 
+                ? lettersStore 
+                : lettersStore.filter(item => item.type === currentFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400 text-xs">Chưa có bức thư nào trong mục này.</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                let badgeBg = 'bg-warmRed';
+                let typeLabel = '💌 Cảm Ơn';
+                if (item.type === 'xinloi') { badgeBg = 'bg-leafGreen'; typeLabel = '🕊️ Xin Lỗi'; }
+                if (item.type === 'hua') { badgeBg = 'bg-autumnOrange'; typeLabel = '🤝 Lời Hứa'; }
+
+                const card = document.createElement('div');
+                card.className = 'bg-[#FFFDF9] border border-vintageBorder rounded-2xl p-5 shadow-sm hover:shadow-md transition relative flex flex-col justify-between transform hover:-translate-y-1';
+                
+                card.innerHTML = `
+                    <div class="paper-clip"></div>
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] text-white font-bold px-2 py-0.5 rounded-full ${badgeBg}">${typeLabel}</span>
+                            <span class="text-xl">${item.stamp || '💐'}</span>
+                        </div>
+                        <p class="text-xs font-bold text-warmBrown">Kính gửi: <span class="text-warmRed">${escapeHtml(item.to)}</span></p>
+                        <p class="font-handwriting text-base text-warmBrown/90 my-3 leading-relaxed">"${escapeHtml(item.content)}"</p>
+                    </div>
+                    <div class="border-t border-vintageBorder/40 pt-2.5 mt-2 flex justify-between items-center text-[11px] text-gray-500">
+                        <span class="font-semibold text-warmBrown">- ${escapeHtml(item.from)} (${escapeHtml(item.class)})</span>
+                        <span class="text-[10px]">${item.date}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterWall(filter) {
+            currentFilter = filter;
+            ['all', 'camoen', 'xinloi', 'hua'].forEach(f => {
+                const btn = document.getElementById(`filter-${f}`);
+                if (btn) {
+                    btn.className = (f === filter) 
+                        ? 'px-3 py-1.5 rounded-lg bg-warmBrown text-white transition' 
+                        : 'px-3 py-1.5 rounded-lg text-warmBrown hover:bg-cream transition';
+                }
+            });
+            renderWall();
+        }
+
+        function handleSendLetter(event) {
+            event.preventDefault();
+
+            const teacherSelect = document.getElementById('teacher-select');
+            let teacherName = teacherSelect.value;
+            if (teacherName === 'custom') {
+                teacherName = document.getElementById('custom-teacher-input').value.trim();
+            }
+
+            if (!teacherName) {
+                alert('Vui lòng chọn hoặc nhập tên Thầy/Cô người nhận.');
+                return;
+            }
+
+            const isAnon = document.getElementById('anonymous-check').checked;
+            const senderName = isAnon ? 'Học sinh ẩn danh' : (document.getElementById('sender-name').value.trim() || 'Học sinh Chu Văn An');
+            const senderClass = document.getElementById('sender-class').value;
+            const content = document.getElementById('letter-content').value.trim();
+
+            const selectedStampElem = document.querySelector('input[name="stamp"]:checked');
+            let stampEmoji = '💐';
+            if (selectedStampElem) {
+                const val = selectedStampElem.value;
+                if (val === 'tem-khai-niem') stampEmoji = '📚';
+                if (val === 'tem-trai-tim') stampEmoji = '🍁';
+                if (val === 'tem-may-bay') stampEmoji = '🕊️';
+            }
+
+            const today = new Date();
+            const dateStr = `${today.getDate()}/${today.getMonth()+1}`;
+
+            const newLetter = {
+                id: Date.now(),
+                type: currentType,
+                to: teacherName,
+                from: senderName,
+                class: senderClass,
+                content: content,
+                stamp: stampEmoji,
+                date: dateStr
+            };
+
+            // Đưa thư mới vào ĐẦU mảng & Lưu ngay lập tức
+            lettersStore.unshift(newLetter);
+            saveLetters();
+
+            // Hiển thị lại bảng tin
+            filterWall('all');
+
+            // Hiệu ứng pháo hoa
+            confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+
+            // Hiện bưu thiếp
+            showPostcardModal(newLetter);
+
+            // Reset Form
+            document.getElementById('letter-form').reset();
+            setLetterType('camoen');
+            document.getElementById('custom-teacher-input').classList.add('hidden');
+        }
+
+        function showPostcardModal(letter) {
+            document.getElementById('postcard-to').innerText = letter.to;
+            document.getElementById('postcard-body').innerText = `"${letter.content}"`;
+            document.getElementById('postcard-from').innerText = letter.from;
+            document.getElementById('postcard-class').innerText = letter.class;
+            document.getElementById('postcard-stamp-emoji').innerText = letter.stamp;
+
+            const tagElem = document.getElementById('postcard-tag');
+            if (letter.type === 'camoen') {
+                tagElem.innerText = 'LỜI TRI ÂN';
+                tagElem.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-warmRed text-white';
+            } else if (letter.type === 'xinloi') {
+                tagElem.innerText = 'LỜI XIN LỖI';
+                tagElem.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-leafGreen text-white';
+            } else {
+                tagElem.innerText = 'LỜI HỨA CỐ GẮNG';
+                tagElem.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-autumnOrange text-white';
+            }
+
+            document.getElementById('postcard-modal').classList.remove('hidden');
+        }
+
+        function closePostcardModal() {
+            document.getElementById('postcard-modal').classList.add('hidden');
+            scrollToSection('wall-section');
+        }
+
+        function downloadPostcard() {
+            const card = document.getElementById('postcard-card');
+            html2canvas(card, { backgroundColor: '#FDFBF7', scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Tri-An-Chu-Van-An-${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html></pre>
+        </body>
+    </html>
